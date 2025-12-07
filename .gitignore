@@ -1,3 +1,14 @@
-build/
+#Ignore build files
+/build
+/.vscode
 sdkconfig
 sdkconfig.old
+.vscode
+.settings
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+build.ninja
+.ninja_log
+.ninja_deps
+sdkconfig.txt

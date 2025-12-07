@@ -1,13 +1,14 @@
 #include "sensor_utils.h"
 #include "esp_log.h"
 #include <math.h>
+#include "driver/i2c_master.h"
 
 #define I2C_MASTER_SCL_IO           18                          /* GPIO number used for I2C master clock */
 #define I2C_MASTER_SDA_IO           21                          /* GPIO number used for I2C master data  */
 #define I2C_MASTER_NUM              I2C_NUM_0                   /* I2C port number for master dev */
-#define I2C_MASTER_FREQ_HZ          100000                       /* I2C master clock frequency */
+#define I2C_MASTER_FREQ_HZ          100000                      /* I2C master clock frequency */
 #define I2C_MASTER_TIMEOUT_MS       1000
-#define I2C_MASTER_TIMEOUT_MS 1000
+#define I2C_MASTER_TIMEOUT_MS       1000
 
 #define HUMIDITY_SENSOR_ADDR 0x5F
 #define PRESSURE_SENSOR_ADDR 0x5D
@@ -154,7 +155,7 @@ float read_humidity(i2c_master_dev_handle_t humidity_handle){
 
     return humidity;
 }
-float read_pressure(i2c_master_dev_handle_t pressure_handle){
+float read_temp_pressure(i2c_master_dev_handle_t pressure_handle){
     const uint8_t pressure_data_address = 0x28 | 0x80;
     const uint8_t temp_data_address = 0x2B | 0x80;
     uint8_t data_buffer[3]; 
@@ -167,10 +168,10 @@ float read_pressure(i2c_master_dev_handle_t pressure_handle){
     int16_t raw_temp = (int16_t)((data_buffer[1] << 8) | data_buffer[0]);
     float temp = 42.5f + (raw_temp / 480.0f);
 
-    ESP_LOGI("LPS331", "TEMP FROM PRESSURE SENSOR: %.2f °C", temp);
-    ESP_LOGI("LPS331", "PRESSURE: %.2f hPa", pressure_hPa);
+    //ESP_LOGI("LPS331", "TEMP FROM PRESSURE SENSOR: %.2f °C", temp);
+    //ESP_LOGI("LPS331", "PRESSURE: %.2f hPa", pressure_hPa);
     
-    return pressure_hPa;
+    return temp;
 }
 float read_light(i2c_master_dev_handle_t light_handle){
     uint8_t buffer[4];
@@ -189,6 +190,6 @@ float read_light(i2c_master_dev_handle_t light_handle){
     float Lux2 = (0.63f * c0 - 1.0f * c1) / CPL;
 
     float lux = fmaxf(fmaxf(Lux1, Lux2), 0.0f);
-
+    //ESP_LOGI("TSL2571", "LIGHT: %.2f lux", lux);
     return lux; 
 }

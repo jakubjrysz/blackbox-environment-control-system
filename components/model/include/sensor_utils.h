@@ -13,7 +13,7 @@ void light_sensor_init(i2c_master_bus_handle_t bus_handle, i2c_master_dev_handle
 
 
 float read_humidity(i2c_master_dev_handle_t humidity_handle);
-float read_pressure(i2c_master_dev_handle_t pressure_handle);
+float read_temp_pressure(i2c_master_dev_handle_t pressure_handle);
 float read_light(i2c_master_dev_handle_t light_handle);
 
 #endif
