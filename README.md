@@ -71,7 +71,10 @@ This project is built upon:
 
 
 ## Project Progress
-30.10.25 - begining of the project 
-10.11.25 - added library for sensor communication  
-23.11.25 - setup of first working version of OPC UA server 
+30.10.25 - begining of the project
+
+10.11.25 - added library for sensor communication
+
+23.11.25 - setup of first working version of OPC UA server
+
 09.12.25 - combining together sensors and server
