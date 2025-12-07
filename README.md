@@ -16,6 +16,7 @@ This project implements an OPC UA server on ESP32 hardware, allowing the device 
 ## Hardware Requirements
 
 - ESP32 development board
+- I2C bus and sensors
 - USB cable for programming and power
 - WiFi network for connectivity
 
